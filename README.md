@@ -1,5 +1,14 @@
 # sw-report.sh
-<p>Quickly lookup Brocade SAN Fabric switch information using CLI interface.</p>
+<p>Quickly lookup Brocade SAN Fabric switch information using CLI. This was initially created to collect switch fabric information during troubleshooting, which usually required multiple commands to finally extract what I was looking for. The script automates this, saving a great deal of time, to focus on the issue instead of list of commands, filters, and adhoc scripts needed to get the same result.</p>
+<p>This program includes a number of very useful functions, such as...</p>
+
+* Display the current list of switches and directors on the SAN Fabrics by name and IP, so you don't have to look this up from your notes, or an internal webpage. Switch firmware versions are included. This is automatically updated, as switches are added or removed. <b>Note:</b> The script requires an update if the core fabric switches are changed.
+* Enhanced switchshow command which includes all the Virtual WWPNs and their hostnames on the same port. If any portnames were defined, they're also included. 
+* Enhanced porterror report which only displays the ports with errors, along with an explanation of each, shrinking this report length significantly when viewing Directors.
+* Search the entire SAN Fabric to identify the switch and ports used by any host, storage array or ISL. Quite useful when troubleshooting port failures. 
+* Display all zones containing a host, array alias or port WWN you define using a search key. If no keys were used, then every zone and their respective alias members are shown.
+
+<p>All functions allow up to 2 additional search keys to help narrow down results. The intent here is to help quickly identify "the needle in the haystack".</p>
 
     $ sw-report.sh
     usage: sw-report.sh [list] | [<Switch_Name|IP_Address> [porterror]] | [find port|alias|zone [-]<key1> [[-]<key2>]]
